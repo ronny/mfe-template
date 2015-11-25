@@ -36,11 +36,9 @@ module.exports = function writeStats(stats) {
   }
 
   var script = getChunks("main", "js");
-  var css = getChunks("main", "css");
 
   var content = {
     script: script,
-    css: css
   };
 
   fs.writeFileSync(filepath, JSON.stringify(content));
