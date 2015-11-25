@@ -10,7 +10,7 @@
     "src/server.js",
     "src/routes.js",
     "src/validate.js",
-    "src/attributeValidators.js",
+    "src/*.js",
     "src/utils"
   ]
 }
