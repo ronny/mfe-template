@@ -9,6 +9,7 @@
     "src/app.js",
     "src/server.js",
     "src/routes.js",
+    "src/validate.js",
     "src/utils"
   ]
 }
