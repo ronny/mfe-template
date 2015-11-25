@@ -7,21 +7,6 @@ export default {
         "babel?optional[]=runtime&stage=0"
       ]
     },
-    sass: {
-      test: /\.sass$/,
-      loaders: [
-        "css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
-        "autoprefixer?browsers=last 2 version",
-        "sass?indentedSyntax",
-      ]
-    },
-    css: {
-      test: /\.css$/,
-      loaders: [
-        "css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]",
-        "autoprefixer?browsers=last 2 version",
-      ]
-    },
     image: {
       test: /\.(jpe?g|png|gif|svg|ico)($|\?)/,
       loaders: ["url?limit=10000"],

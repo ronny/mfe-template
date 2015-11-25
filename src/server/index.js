@@ -5,8 +5,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import favicon from "serve-favicon";
 import morgan from "morgan";
-import csurf from "csurf";
-import fs from "fs";
+import validate from "../validate";
 
 const server = express();
 
@@ -15,8 +14,6 @@ server.use(bodyParser.json());
 server.use(cookieParser());
 server.use(compression());
 server.use(favicon(path.resolve(__dirname, "../../public/favicon.png")));
-
-server.use(csurf({ cookie: true }));
 
 /////////////////////////////////////////////////////////////////////
 
@@ -29,21 +26,16 @@ if (server.get("env") === "production") {
   }));
 }
 
-// On development, serve the static files from the webpack dev server.
-if (server.get("env") === "development") {
-  require("../../webpack/dev-server");
-}
-
 /////////////////////////////////////////////////////////////////////
 // Render the app server-side and send it as response
 // import render from "./render.generated.js";
 // server.use(render);
 
-// TODO: remove this when server rendering works again
-server.use((req, res, next) => { // eslint-disable-line no-unused-vars
-  res.set("Content-Type", "text/html");
-  res.send(fs.readFileSync(path.resolve(__dirname, "../../public/index.html")));
-});
+// // TODO: remove this when server rendering works again
+// server.use((req, res, next) => { // eslint-disable-line no-unused-vars
+//   res.set("Content-Type", "text/html");
+//   res.send(fs.readFileSync(path.resolve(__dirname, "../../public/index.html")));
+// });
 
 // Generic server errors (e.g. not caught by components)
 server.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
@@ -59,6 +51,12 @@ server.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
     .set({"Content-Type": "text/plain"})
     .send(msg);
 });
+
+server.post('/validate.json', function(req, res) {
+    console.log(req)
+    res.json(validate());   
+});
+
 
 /////////////////////////////////////////////////////////////////////
 // Finally, start the express server

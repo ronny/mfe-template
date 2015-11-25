@@ -11,7 +11,6 @@ const commonLoaders = [
   {
     ...shared.loaders.js,
     loaders: [
-      "react-hot",
       "babel?optional[]=runtime&stage=0"
     ]
   },
@@ -52,17 +51,13 @@ export default [
           ]
         },
         {
-          test: shared.loaders.sass.test,
           loader: ExtractTextPlugin.extract(
             "style",
-            shared.loaders.sass.loaders.join("!")
           )
         },
         {
-          test: shared.loaders.css.test,
           loader: ExtractTextPlugin.extract(
             "style",
-            shared.loaders.css.loaders.join("!")
           )
         },
         shared.loaders.image,
@@ -77,7 +72,6 @@ export default [
     resolve: shared.resolve,
     externals: externals,
     plugins: [
-      new ExtractTextPlugin("[name]-[hash].css"),
       new webpack.IgnorePlugin(/\.\/dev/, /\/config$/),
       new webpack.DefinePlugin({
         "process.env": {
@@ -117,17 +111,12 @@ export default [
       loaders: [
         ...commonLoaders,
         {
-          ...shared.loaders.sass,
           loaders: [
-            "css/locals?modules",
             "autoprefixer?browsers=last 2 version",
-            "sass?indentedSyntax",
           ]
         },
         {
-          ...shared.loaders.css,
           loaders: [
-            "css/locals?modules",
             "autoprefixer?browsers=last 2 version",
           ]
         }

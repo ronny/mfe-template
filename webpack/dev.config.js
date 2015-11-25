@@ -29,22 +29,17 @@ const config = {
       {
         ...shared.loaders.js,
         loaders: [
-          "react-hot",
           "babel?optional[]=runtime&stage=0&cacheDirectory"
         ]
       },
       {
-        ...shared.loaders.sass,
         loaders: [
           "style",
-          ...shared.loaders.sass.loaders,
         ]
       },
       {
-        ...shared.loaders.css,
         loaders: [
           "style",
-          ...shared.loaders.css.loaders,
         ]
       },
       shared.loaders.image,
